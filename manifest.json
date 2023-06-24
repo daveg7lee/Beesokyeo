@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "비속여",
+  "description": "웹 상에 난무하는 비속어들을 숨겨주는 확장 프로그램",
+  "version": "1.0",
+  "icons": {
+    "16": "images/16.png",
+    "32": "images/32.png",
+    "64": "images/64.png",
+    "128": "images/128.png"
+  },
+  "action": {
+    "default_icon": "images/32.png",
+    "default_title": "비속여",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/inject.js"]
+    }
+  ]
+}
