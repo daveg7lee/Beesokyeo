@@ -1,9 +1,18 @@
+<!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <title>Word List Extension</title>
+    <link rel="stylesheet" type="text/css" href="popup.css" />
+    <script src="script.js"></script>
+  </head>
   <body>
-    <main>
-      <h1>Welcome to Beesokyeo</h1>
-    </main>
-    <script src="/scripts/popup.js"></script>
+    <div class="container">
+      <h2>Word List Extension</h2>
+      <form id="wordForm">
+        <input type="text" id="wordInput" placeholder="Enter a word" />
+        <button type="submit">Add</button>
+      </form>
+      <ul id="wordList"></ul>
+    </div>
   </body>
 </html>
