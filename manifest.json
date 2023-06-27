@@ -19,5 +19,6 @@
       "matches": ["<all_urls>"],
       "js": ["scripts/inject.js"]
     }
-  ]
+  ],
+  "permissions": ["storage"]
 }
