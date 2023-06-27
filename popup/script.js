@@ -2,14 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
   var wordForm = document.getElementById("wordForm");
   var wordInput = document.getElementById("wordInput");
   var wordList = document.getElementById("wordList");
-  var getUrlButton = document.getElementById("getUrlButton");
 
-  // Load existing words from storage
   loadWords();
 
   wordForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    var word = wordInput.value.trim();
+    const word = wordInput.value.trim();
     if (word !== "") {
       addWord(word);
       wordInput.value = "";
@@ -19,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   wordList.addEventListener("click", function (event) {
     if (event.target.classList.contains("delete-button")) {
-      var li = event.target.parentNode;
-      var word = li.firstChild.textContent;
+      const li = event.target.parentNode;
+      const word = li.firstChild.textContent;
       deleteWord(li, word);
     }
   });
@@ -38,10 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function createListItem(word) {
-    var li = document.createElement("li");
-    var span = document.createElement("span");
+    const li = document.createElement("li");
+    const span = document.createElement("span");
     span.textContent = word;
-    var deleteButton = document.createElement("button");
+    const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete-button");
     li.appendChild(span);
@@ -50,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function saveWords() {
-    var words = Array.from(wordList.getElementsByTagName("li")).map(function (
+    const words = Array.from(wordList.getElementsByTagName("li")).map(function (
       li
     ) {
       return li.firstChild.textContent;
@@ -60,8 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function removeWord(word) {
     chrome.storage.local.get("wordList", function (result) {
-      var words = result.wordList || [];
-      var index = words.indexOf(word);
+      const words = result.wordList || [];
+      const index = words.indexOf(word);
       if (index !== -1) {
         words.splice(index, 1);
         chrome.storage.local.set({ wordList: words });
@@ -71,9 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadWords() {
     chrome.storage.local.get("wordList", function (result) {
-      var words = result.wordList || [];
+      const words = result.wordList || [];
       words.forEach(function (word) {
-        var li = createListItem(word);
+        const li = createListItem(word);
         wordList.appendChild(li);
       });
     });
