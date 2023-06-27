@@ -70,9 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadWords() {
     chrome.storage.local.get("wordList", function (result) {
-      var wordObj = result.wordList || {};
-      Object.entries(wordObj).forEach(function ([key, value]) {
-        var li = createListItem(key + ": " + value);
+      var words = result.wordList || [];
+      words.forEach(function (word) {
+        var li = createListItem(word);
         wordList.appendChild(li);
       });
     });
