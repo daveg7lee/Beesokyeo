@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var wordForm = document.getElementById("wordForm");
   var wordInput = document.getElementById("wordInput");
   var wordList = document.getElementById("wordList");
+  var getUrlButton = document.getElementById("getUrlButton");
 
   // Load existing words from storage
   loadWords();
@@ -77,4 +78,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+  function getCurrentURL() {
+    return window.location.href;
+  }
+
+  // Event listener for the button click
+  var getUrlButton = document.getElementById("getUrlButton");
+  getUrlButton.addEventListener("click", function () {
+    var currentURL = getCurrentURL();
+    console.log(currentURL); // You can modify this line to do something with the URL
+  });
 });
