@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
   function getCurrentURL() {
     return window.location.href;
   }

@@ -46,7 +46,7 @@ chrome.storage.local.get(["wordList"], async function (result) {
     await Promise.all(
       words.map(async (word) => {
         const text = word.nodeValue;
-        const res = await fetch("http://127.0.0.1:5000/purify", {
+        const res = await fetch("http://118.67.132.115/purify", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
