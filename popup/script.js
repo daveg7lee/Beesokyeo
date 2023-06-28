@@ -1,9 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var wordForm = document.getElementById("wordForm");
-  var wordInput = document.getElementById("wordInput");
-  var wordList = document.getElementById("wordList");
+  const wordForm = document.getElementById("wordForm");
+  const wordInput = document.getElementById("wordInput");
+  const wordList = document.getElementById("wordList");
+  const getUrlButton = document.getElementById("getUrlButton");
 
   loadWords();
+
+  getUrlButton.addEventListener("click", function () {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      var currentUrl = tabs[0].url;
+
+      chrome.storage.local.get("urlList", function (data) {
+        var urlList = data.urlList || [];
+
+        if (!urlList.includes(currentUrl) && currentUrl !== "") {
+          urlList.push(currentUrl);
+
+          chrome.storage.local.set({ urlList: urlList }, function () {
+            console.log("URL이 저장되었습니다.");
+          });
+        } else {
+          console.log("중복된 URL이거나 유효하지 않은 URL입니다.");
+        }
+      });
+    });
+  });
 
   wordForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -76,15 +97,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
-
-  function getCurrentURL() {
-    return window.location.href;
-  }
-
-  // Event listener for the button click
-  var getUrlButton = document.getElementById("getUrlButton");
-  getUrlButton.addEventListener("click", function () {
-    var currentURL = getCurrentURL();
-    console.log(currentURL); // You can modify this line to do something with the URL
-  });
 });

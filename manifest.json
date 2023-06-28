@@ -20,6 +20,6 @@
       "js": ["scripts/inject.js"]
     }
   ],
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs"],
   "options_page": "options.html"
 }
