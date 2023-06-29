@@ -53,9 +53,13 @@ chrome.storage.local.get("wordList", function (result) {
 
     await Promise.all(
       formattedWords.map(async (words) => {
-        const values = words.map((word) => word.nodeValue);
+        const values = words.map((word) => {
+          const value = word.nodeValue;
+          word.nodeValue = "filtering....";
+          return value;
+        });
 
-        const res = await fetch("http://118.67.132.115/purify", {
+        const res = await fetch("https://beesokyeo.social/purify", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -67,7 +71,6 @@ chrome.storage.local.get("wordList", function (result) {
         const resArray = JSON.parse(JSON.stringify(json["res"]));
 
         JSON.parse(resArray).map((res, index) => {
-          console.log(res, words[index]["nodeValue"]);
           words[index]["nodeValue"] = res;
         });
       })
@@ -79,10 +82,8 @@ chrome.storage.local.get("wordList", function (result) {
     const isBlocked = result.urlList.map((url) => url.includes(currentUrl));
 
     if (!isBlocked.includes(true)) {
-      console.log("Filtering...");
       filterVisibleElements();
     } else {
-      console.log("Blocked!");
     }
   });
 });
