@@ -49,7 +49,7 @@ chrome.storage.local.get("wordList", function (result) {
   }
 
   async function purifyBadWords() {
-    formattedWords = create2DArray(words, 20);
+    formattedWords = create2DArray(words, 10);
 
     await Promise.all(
       formattedWords.map(async (words) => {
